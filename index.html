@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VORTEX OTIMIZAÇÃO</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ background:#080b12;
+ color:white;
+ font-family:Arial,sans-serif;
+ padding:18px;
+}
+main{max-width:650px;margin:auto}
+header{text-align:center;padding:25px 5px}
+h1{color:#00e5ff;font-size:29px}
+header p{color:#aaa;margin-top:12px}
+.card{
+ background:#111c2c;
+ border:1px solid #164d65;
+ border-radius:15px;
+ padding:20px;
+ margin:15px 0;
+}
+h2{color:#00e5ff;font-size:19px;margin-bottom:15px}
+label{display:block;margin:12px 0 7px;color:#ddd}
+input,select{
+ width:100%;padding:13px;
+ border-radius:9px;
+ border:1px solid #31506a;
+ background:#080f1b;
+ color:white;font-size:15px;
+}
+button{
+ width:100%;padding:15px;
+ margin-top:15px;
+ border:0;border-radius:10px;
+ background:linear-gradient(90deg,#00e5ff,#087cff);
+ color:#00101a;font-size:16px;
+ font-weight:bold;
+}
+.modos{display:grid;gap:10px}
+.modo{
+ background:#0a1422;
+ border:1px solid #31506a;
+ padding:13px;border-radius:9px;
+}
+.modo input{width:auto}
+#resultado{display:none}
+li{margin:12px 0;line-height:1.5;color:#dceaff}
+small{color:#879bb3;line-height:1.6}
+footer{text-align:center;color:#71849b;margin:25px 0}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<h1>⚡ VORTEX OTIMIZAÇÃO ⚡</h1>
+<p>Otimização e recomendações para todos os celulares!</p>
+</header>
+
+<div class="card">
+<h2>📱 SEU CELULAR</h2>
+
+<label>Marca do celular</label>
+<select id="marca">
+<option>Samsung</option>
+<option>Motorola</option>
+<option>Xiaomi</option>
+<option>Redmi</option>
+<option>POCO</option>
+<option>Realme</option>
+<option>Infinix</option>
+<option>Tecno</option>
+<option>Apple</option>
+<option>Outro</option>
+</select>
+
+<label>Modelo do celular</label>
+<input id="modelo" placeholder="Digite seu modelo">
+
+<label>Memória RAM</label>
+<select id="ram">
+<option>2 GB</option>
+<option>3 GB</option>
+<option>4 GB</option>
+<option>6 GB</option>
+<option>8 GB</option>
+<option>12 GB</option>
+<option>16 GB ou mais</option>
+</select>
+</div>
+
+<div class="card">
+<h2>🚀 MODO DE OTIMIZAÇÃO</h2>
+
+<div class="modos">
+<label class="modo">
+<input type="radio" name="modo" value="Leve">
+🍃 MODO LEVE
+</label>
+
+<label class="modo">
+<input type="radio" name="modo" value="Equilibrado" checked>
+⚖️ MODO EQUILIBRADO
+</label>
+
+<label class="modo">
+<input type="radio" name="modo" value="Desempenho">
+⚡ MODO DESEMPENHO
+</label>
+</div>
+
+<button onclick="otimizar()">OTIMIZAR MEU CELULAR</button>
+</div>
+
+<div class="card" id="resultado">
+<h2>✅ RESULTADO DA OTIMIZAÇÃO</h2>
+<h3 id="titulo"></h3>
+<ul id="dicas"></ul>
+<small>
+Estas são recomendações para configurar seu aparelho.
+O HTML não altera automaticamente as configurações internas
+nem garante aumento de FPS.
+</small>
+<button onclick="window.print()">SALVAR RESULTADO</button>
+</div>
+
+<footer>⚡ VORTEX OTIMIZAÇÃO ⚡</footer>
+</main>
+
+<script>
+function otimizar(){
+
+let marca=document.getElementById("marca").value;
+let modelo=document.getElementById("modelo").value;
+let ram=document.getElementById("ram").value;
+let modo=document.querySelector(
+'input[name="modo"]:checked'
+).value;
+
+let dicas=[];
+
+if(modo==="Leve"){
+dicas=[
+"Feche aplicativos que não estão sendo utilizados.",
+"Use gráficos suaves nos jogos.",
+"Evite downloads durante as partidas.",
+"Deixe espaço livre no armazenamento.",
+"Reduza animações do sistema, se disponível."
+];
+}
+
+if(modo==="Equilibrado"){
+dicas=[
+"Ative o modo de jogo oficial do aparelho, se disponível.",
+"Utilize gráficos equilibrados.",
+"Feche aplicativos pesados antes de jogar.",
+"Mantenha o sistema atualizado.",
+"Evite deixar muitos aplicativos abertos."
+];
+}
+
+if(modo==="Desempenho"){
+dicas=[
+"Ative o modo desempenho oficial, se disponível.",
+"Priorize gráficos suaves e taxa de quadros estável.",
+"Pause downloads durante os jogos.",
+"Evite jogar enquanto o aparelho estiver quente.",
+"Feche aplicativos desnecessários.",
+"Confira o espaço disponível no armazenamento."
+];
+}
+
+if(ram==="2 GB" || ram==="3 GB"){
+dicas.push("RAM limitada: mantenha poucos aplicativos abertos.");
+}
+
+if(ram==="8 GB" || ram==="12 GB" || ram==="16 GB ou mais"){
+dicas.push("Mesmo com mais RAM, evite aplicativos pesados em segundo plano.");
+}
+
+document.getElementById("titulo").textContent=
+marca+" "+(modelo || "Seu celular")+" | "+ram+" | "+modo;
+
+let lista=document.getElementById("dicas");
+lista.innerHTML="";
+
+dicas.forEach(function(dica){
+let li=document.createElement("li");
+li.textContent="✓ "+dica;
+lista.appendChild(li);
+});
+
+document.getElementById("resultado").style.display="block";
+document.getElementById("resultado").scrollIntoView({
+behavior:"smooth"
+});
+}
+</script>
+
+</body>
+  </html>
+  
